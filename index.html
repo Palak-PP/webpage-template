@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limitless Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    html {
+        scroll-behavior: smooth;
+      }
+      
+    body {
+      background: linear-gradient(to right, #ff0000, #000000);
+      cursor: none;
+    }
+    .overlay-text {
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      background-image: linear-gradient(to right, #ff0055, #ffffff);
+      font-weight: 800;
+    }
+    .glow-button {
+      box-shadow: 0 0 10px #ff0077, 0 0 20px #ff0077, 0 0 40px #ff0077;
+    }
+    .floating-icons i {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+    }
+    #custom-cursor {
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        border: 2px solid #ff0033;
+        border-radius: 9999px;
+        transition: transform 0.1s ease-out;
+        mix-blend-mode: difference;
+      }
+      
+      .hover-grow:hover ~ #custom-cursor {
+        transform: scale(2);
+      }
+      #preloader {
+        transition: opacity 0.5s ease;
+      }
+      .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        perspective: 1000px;
+      }
+      .product-card:hover {
+        transform: rotateX(2deg) rotateY(-2deg) scale(1.05);
+      }
+      .cart-btn:hover i {
+        animation: fly 0.4s ease;
+      }
+      @keyframes fly {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-5px) scale(1.2); }
+        100% { transform: translateY(0); }
+      }
+      
+      
+  </style>
+</head>
+<body class="w-full text-white font-sans overflow-x-hidden">
+    <!-- Scroll Progress Bar -->
+<div id="progressBar" class="fixed top-0 left-0 h-1 bg-red-600 z-40 transition-all"></div>
+
+    <div id="custom-cursor" class="fixed top-0 left-0 pointer-events-none z-50"></div>
+<!-- Preloader -->
+<div id="preloader" class="fixed inset-0 bg-black z-50 flex items-center justify-center">
+    <div class="text-center">
+      <div class="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+      <h1 class="mt-4 text-red-500 font-bold text-lg">Loading Limitless...</h1>
+    </div>
+  </div>
+  
+ <!-- Sidebar Nav -->
+<div class="fixed top-0 left-4 h-full flex flex-col justify-between py-10 items-center z-20">
+    <!-- Top Icons -->
+    <div class="flex flex-col gap-6 text-xl floating-icons">
+      <a href="#home"><i class="fas fa-home hover:text-red-500 transition"></i></a>
+      <a href="#shop"><i class="fas fa-shopping-cart hover:text-red-500 transition"></i></a>
+      <a href="#about"><i class="fas fa-comments hover:text-red-500 transition"></i></a>
+      <a href="#timeline"><i class="fas fa-arrow-left hover:text-red-500 transition"></i></a>
+    </div>
+    <!-- Divider -->
+    <div class="h-32 w-px bg-white opacity-30 my-4"></div>
+    <!-- Bottom Icons -->
+    <div class="flex flex-col gap-4 text-xl">
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram hover:text-red-500 transition"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter hover:text-red-500 transition"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook hover:text-red-500 transition"></i></a>
+    </div>
+  </div>
+  
+
+  <!-- Floating Particles -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <div class="absolute w-2 h-2 bg-white rounded-full top-10 left-20 animate-pulse opacity-10"></div>
+    <div class="absolute w-3 h-3 bg-red-500 rounded-full top-2/3 left-1/4 animate-bounce opacity-20"></div>
+    <div class="absolute w-1.5 h-1.5 bg-black rounded-full top-1/4 right-1/3 animate-ping opacity-15"></div>
+  </div>
+
+  <!-- Hero Section -->
+<div class="relative z-10 flex items-center justify-center h-screen px-10 overflow-hidden" id="home">
+
+    <!-- Background shimmer effect -->
+    <div class="absolute w-[600px] h-[600px] bg-pink-500 rounded-full blur-[150px] opacity-20 animate-pulse top-0 left-0"></div>
+    <div class="absolute w-[500px] h-[500px] bg-pink-700 rounded-full blur-[120px] opacity-20 animate-ping bottom-0 right-0"></div>
+  
+    <!-- Overlay shimmer animation -->
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer z-0 pointer-events-none"></div>
+  
+    <!-- Content -->
+    <div class="relative z-10 text-center max-w-3xl" data-aos="fade-up">
+      <h1 class="text-7xl lg:text-9xl uppercase tracking-widest font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-400 drop-shadow-md">
+        Limitless
+      </h1>
+      <div class="mt-10">
+        <button 
+          onclick="showPopup()"
+          class="px-8 py-3 border-2 border-pink-500 text-white font-bold uppercase text-sm hover:bg-pink-500 glow-button transition duration-300">
+          More
+        </button>
+  
+        <!-- Popup Box -->
+        <div id="popup" class="fixed bottom-10 right-10 bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg z-50 opacity-0 pointer-events-none transition-opacity duration-500">
+          Coming Soon 🚀
+        </div>
+      </div>
+    </div>
+  
+    <!-- Bottom Right Text -->
+    <div class="absolute bottom-10 right-10 max-w-sm text-right" data-aos="fade-left">
+      <h2 class="text-lg font-bold uppercase">Your Project</h2>
+      <p class="text-sm text-gray-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+  
+  <!-- Tailwind extra shimmer animation -->
+  <style>
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-shimmer {
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    animation: shimmer 2.5s infinite;
+    background-size: 200% 100%;
+  }
+  </style>
+  
+ <!-- About Section -->
+<section class="relative bg-fixed bg-center bg-cover bg-no-repeat py-32 text-white" id="about" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+  
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-16 tracking-widest" data-aos="fade-down">
+        About Us
+      </h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-gradient-to-br from-pink-900/80 to-black/70 p-6 rounded-xl shadow-xl backdrop-blur-md" data-aos="fade-up">
+          <h3 class="text-xl font-semibold mb-4">Driven By Passion</h3>
+          <p>We create athletic experiences that ignite your potential and push boundaries beyond imagination.</p>
+        </div>
+        <div class="bg-gradient-to-br from-pink-900/80 to-black/70 p-6 rounded-xl shadow-xl backdrop-blur-md" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-semibold mb-4">High-End Designs</h3>
+          <p>Visual aesthetics mixed with performance — our designs are built to inspire and empower.</p>
+        </div>
+        <div class="bg-gradient-to-br from-pink-900/80 to-black/70 p-6 rounded-xl shadow-xl backdrop-blur-md" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-semibold mb-4">Always Forward</h3>
+          <p>Limitless means evolution. We focus on innovation and bold futures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Shop/Product Section with Parallax -->
+  <section class="h-screen parallax flex items-center justify-center text-center bg-fixed bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1470&q=80');">
+    <section class="h-screen parallax flex items-center justify-center text-center bg-fixed bg-cover bg-center" id="shop"></section>
+    <div class="bg-black bg-opacity-60 p-10 rounded-xl" data-aos="fade-up">
+      <h2 class="text-5xl font-bold mb-6">Explore Our Gear</h2>
+      <p class="max-w-xl mx-auto text-lg">Top-tier equipment, apparel, and accessories built to perform — shop now and power up your game.</p>
+      <button onclick="window.location.href='#shop-section'" class="mt-6 px-6 py-3 bg-pink-600 hover:bg-pink-500 text-white rounded-full glow-button transition-all">
+        Visit Shop
+      </button>
+        </div>
+  </section>
+
+ <!-- Featured Section with Glassmorphism + Parallax -->
+<section class="relative bg-fixed bg-center bg-cover bg-no-repeat py-32 text-white" style="background-image: url('para.png');">
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+  
+    <!-- Content -->
+    <div class="relative z-10 max-w-6xl mx-auto px-8">
+      <div class="text-center mb-12" data-aos="fade-down">
+        <h2 class="text-4xl font-bold uppercase tracking-widest text-pink-500">Featured</h2>
+      </div>
+  
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Card -->
+        <div class="backdrop-blur-md bg-white/10 border border-white/20 p-6 rounded-xl shadow-xl transition hover:scale-105 hover:shadow-pink-500/40 duration-300" data-aos="fade-up">
+          <h3 class="text-2xl font-semibold mb-4 text-white">Futuristic Design</h3>
+          <p class="text-gray-300">Experience the glow — clean, modern and techy vibes that break the norm.</p>
+        </div>
+  
+        <div class="backdrop-blur-md bg-white/10 border border-white/20 p-6 rounded-xl shadow-xl transition hover:scale-105 hover:shadow-pink-500/40 duration-300" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-2xl font-semibold mb-4 text-white">Glowing Innovation</h3>
+          <p class="text-gray-300">Shine with purpose. Every detail lights up your story.</p>
+        </div>
+  
+        <div class="backdrop-blur-md bg-white/10 border border-white/20 p-6 rounded-xl shadow-xl transition hover:scale-105 hover:shadow-pink-500/40 duration-300" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-2xl font-semibold mb-4 text-white">Blurred Perfection</h3>
+          <p class="text-gray-300">Soft blur, sharp impact. This is what elegance in tech feels like.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- New Parallax Feature Section -->
+<section class="h-screen parallax flex items-center justify-center text-center bg-fixed bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1470&q=80');">
+    <div class="bg-black bg-opacity-60 p-10 rounded-xl max-w-2xl" data-aos="fade-up">
+      <h2 class="text-5xl font-extrabold mb-4 tracking-wider text-red-500">Unlock the Next Level</h2>
+      <p class="text-lg text-gray-300 mb-6">Your potential has no limits. Elevate your journey with bold features, sharp design, and cutting-edge performance.</p>
+      <button class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300">Discover More</button>
+    </div>
+  </section>
+<!-- Video Background Parallax Section -->
+<section class="relative h-screen w-full overflow-hidden flex items-center justify-center text-center">
+    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover">
+      <source src="mon.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  
+    <div class="relative z-10 px-10 max-w-3xl" data-aos="zoom-in">
+      <h2 class="text-5xl font-bold text-red-500 mb-4 uppercase tracking-wide">Fuel Your Fire</h2>
+      <p class="text-lg text-gray-200 mb-6">Immerse yourself in intensity. Our journey is powered by motion, energy, and evolution — all in one frame.</p>
+      <button class="px-6 py-3 bg-white text-red-600 font-bold rounded-full hover:bg-red-600 hover:text-white transition-all duration-300">Join the Movement</button>
+    </div>
+  </section>
+    <!-- Experience Split Section -->
+<section class="w-full h-screen flex flex-col lg:flex-row bg-black text-white">
+    <!-- Left Side Image/Video -->
+    <div class="lg:w-1/2 w-full h-1/2 lg:h-full relative" data-aos="fade-right">
+      <img src="exp.png" class="w-full h-full object-cover" alt="Experience Image">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-red-800/60 to-transparent"></div>
+    </div>
+  
+    <!-- Right Side Content -->
+    <div class="lg:w-1/2 w-full flex flex-col justify-center items-start px-10 py-10 lg:py-0" data-aos="fade-left">
+      <h2 class="text-4xl font-bold mb-6 text-red-500">The Experience</h2>
+      <ul class="space-y-4 text-lg text-gray-300 mb-6">
+        <li><i class="fas fa-check-circle text-red-500 mr-2"></i> Seamless UI built for impact</li>
+        <li><i class="fas fa-check-circle text-red-500 mr-2"></i> Engaging parallax with motion</li>
+        <li><i class="fas fa-check-circle text-red-500 mr-2"></i> Mobile-friendly & lightning fast</li>
+        <li><i class="fas fa-check-circle text-red-500 mr-2"></i> Crafted for bold brand energy</li>
+      </ul>
+      <button class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-full text-white font-semibold transition duration-300">Experience It</button>
+    </div>
+  </section>
+
+  
+  <!-- Timeline Section -->
+<section class="bg-gradient-to-b from-black to-red-950 py-20 px-8">
+    <div class="relative z-10 flex items-center justify-center h-screen px-10" id="timeline">
+      <h2 class="text-4xl font-bold text-white mb-16 uppercase" data-aos="fade-down">The Limitless Journey</h2>
+  
+      <div class="relative border-l-4 border-red-700 pl-10 space-y-16">
+  
+        <!-- Step 1 -->
+        <div data-aos="fade-right" class="relative">
+          <div class="absolute -left-5 top-0 w-6 h-6 rounded-full bg-red-600 animate-pulse ring-4 ring-red-900"></div>
+          <h3 class="text-xl font-semibold text-white mb-2">2022 – The Spark</h3>
+          <p class="text-gray-300">Where it all began — a vision of fire, passion, and a brand to break the norm.</p>
+        </div>
+  
+        <!-- Step 2 -->
+        <div data-aos="fade-left" class="relative">
+          <div class="absolute -left-5 top-0 w-6 h-6 rounded-full bg-red-600 animate-ping ring-4 ring-red-900"></div>
+          <h3 class="text-xl font-semibold text-white mb-2">2023 – The Grind</h3>
+          <p class="text-gray-300">Day by day, step by step — Limitless turned ideas into design, movement, and identity.</p>
+        </div>
+  
+        <!-- Step 3 -->
+        <div data-aos="fade-right" class="relative">
+          <div class="absolute -left-5 top-0 w-6 h-6 rounded-full bg-red-600 animate-pulse ring-4 ring-red-900"></div>
+          <h3 class="text-xl font-semibold text-white mb-2">2024 – The Rise</h3>
+          <p class="text-gray-300">From whispers to shouts — collabs, launches, hype. People started noticing the energy.</p>
+        </div>
+  
+        <!-- Step 4 -->
+        <div data-aos="fade-left" class="relative">
+          <div class="absolute -left-5 top-0 w-6 h-6 rounded-full bg-red-600 animate-ping ring-4 ring-red-900"></div>
+          <h3 class="text-xl font-semibold text-white mb-2">2025 – Limitless</h3>
+          <p class="text-gray-300">This is the now. You’re a part of the journey — and it’s just getting started.</p>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  <!-- Product Gallery with Animations -->
+<section id="shop-section" class="py-20 bg-black text-white relative z-10" id="gallery">
+    <div class="max-w-7xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-4 overlay-text" data-aos="fade-down">
+        Featured Gear
+      </h2>
+      <div class="w-32 h-1 mx-auto bg-red-500 mb-16"></div>
+  
+      <div class="grid md:grid-cols-3 gap-10 group">
+        <!-- Card -->
+        <div class="product-card transform transition duration-300 hover:scale-105 hover:shadow-red-600/30 hover:shadow-2xl bg-gradient-to-br from-red-900 to-black p-6 rounded-xl shadow-xl" data-aos="zoom-in">
+          <div class="overflow-hidden rounded-lg mb-4">
+            <img src="show.png" class="w-full h-40 object-cover hover:scale-110 transform transition duration-500" />
+          </div>
+          <h3 class="text-xl font-semibold mb-1">Redline Runners</h3>
+          <p class="text-sm text-gray-300 mb-4">Engineered for speed & comfort.</p>
+          <button class="cart-btn px-5 py-2 text-white rounded-full glow-button bg-red-600 hover:bg-red-500 flex items-center gap-2 transition-all">
+            <i class="fas fa-shopping-cart animate-pulse"></i> Buy Now
+          </button>
+        </div>
+  
+        <!-- Card -->
+        <div class="product-card transform transition duration-300 hover:scale-105 hover:shadow-red-600/30 hover:shadow-2xl bg-gradient-to-br from-red-900 to-black p-6 rounded-xl shadow-xl" data-aos="zoom-in" data-aos-delay="100">
+          <div class="overflow-hidden rounded-lg mb-4">
+            <img src="gloves.png" class="w-full h-40 object-cover hover:scale-110 transform transition duration-500" />
+          </div>
+          <h3 class="text-xl font-semibold mb-1">Crimson Grip Gloves</h3>
+          <p class="text-sm text-gray-300 mb-4">Style + performance for real athletes.</p>
+          <button class="cart-btn px-5 py-2 text-white rounded-full glow-button bg-red-600 hover:bg-red-500 flex items-center gap-2 transition-all">
+            <i class="fas fa-shopping-cart animate-pulse"></i> Buy Now
+          </button>
+        </div>
+  
+        <!-- Card -->
+        <div class="product-card transform transition duration-300 hover:scale-105 hover:shadow-red-600/30 hover:shadow-2xl bg-gradient-to-br from-red-900 to-black p-6 rounded-xl shadow-xl" data-aos="zoom-in" data-aos-delay="200">
+          <div class="overflow-hidden rounded-lg mb-4">
+            <img src="band.jpg" class="w-full h-40 object-cover hover:scale-110 transform transition duration-500" />
+          </div>
+          <h3 class="text-xl font-semibold mb-1">PulseBand X</h3>
+          <p class="text-sm text-gray-300 mb-4">Track. Train. Transform.</p>
+          <button class="cart-btn px-5 py-2 text-white rounded-full glow-button bg-red-600 hover:bg-red-500 flex items-center gap-2 transition-all">
+            <i class="fas fa-shopping-cart animate-pulse"></i> Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Font (Optional but looks premium) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<!-- Coming Soon Section -->
+<section id="coming-soon" class="relative h-screen bg-black text-white flex flex-col justify-center items-center snap-start overflow-hidden">
+    <!-- Background Glow Elements -->
+    <div class="absolute w-[500px] h-[500px] bg-pink-500 rounded-full blur-[120px] opacity-30 top-0 left-0 animate-pulse"></div>
+    <div class="absolute w-[400px] h-[400px] bg-red-600 rounded-full blur-[100px] opacity-30 bottom-0 right-0 animate-ping"></div>
+  
+    <!-- Coming Soon Text -->
+    <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1000">
+      <h2 class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 drop-shadow-lg">
+        COMING SOON
+      </h2>
+      <p class="text-gray-400 mt-4 text-lg md:text-xl max-w-xl mx-auto">
+        Our next innovation is on the horizon. Get ready to experience something extraordinary!
+      </p>
+  
+      <!-- Notify Button -->
+      <button class="mt-8 px-8 py-3 border-2 border-pink-500 text-white font-semibold rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300 glow-button">
+        Notify Me
+      </button>
+    </div>
+  </section>
+  
+  
+
+
+<!-- Footer -->
+<footer class="bg-black text-white font-[Poppins] text-center text-xs py-4 border-t border-red-800">
+    &copy; 2025 <span class="text-red-500 font-semibold">Palak-pk</span>. All rights reserved.
+  </footer>
+  
+
+  
+  
+  <!-- Carousel Arrow -->
+  <div id="scrollArrow" class="absolute top-1/2 transform -translate-y-1/2 right-5 text-3xl cursor-pointer text-white z-10 hover:text-pink-500 transition duration-300" data-aos="fade-left">
+    <i class="fas fa-arrow-right"></i>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    document.getElementById('scrollArrow').addEventListener('click', function () {
+        window.scrollBy({
+          top: window.innerHeight,
+          left: 0,
+          behavior: 'smooth'
+        });
+      });
+
+    function showPopup() {
+        const popup = document.getElementById('popup');
+        popup.classList.remove('opacity-0', 'pointer-events-none');
+        popup.classList.add('opacity-100');
+    
+        // Hide after 2.5 seconds
+        setTimeout(() => {
+          popup.classList.remove('opacity-100');
+          popup.classList.add('opacity-0', 'pointer-events-none');
+        }, 2500);
+      }
+    const progressBar = document.getElementById("progressBar");
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + "%";
+    });
+
+    window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        preloader.style.opacity = "0";
+        setTimeout(() => preloader.style.display = "none", 500);
+      });
+
+    const cursor = document.getElementById('custom-cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  });
+  document.addEventListener('click', () => {
+    cursor.style.transition = 'transform 0.1s ease-out';
+    cursor.style.transform += ' scale(1.8)';
+    setTimeout(() => {
+      cursor.style.transform = cursor.style.transform.replace(' scale(1.8)', '');
+    }, 150);
+  });
+  </script>
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
